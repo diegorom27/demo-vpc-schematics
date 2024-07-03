@@ -27,14 +27,14 @@ data "ibm_is_vpc" "vpc" {
   name = var.name_vpc
 }
 
-data "ibm_is_subnet" "subnet_1" {
-  provider = ibm.primary
-  name = var.name_subnet_1
+data "ibm_is_subnets" "all_subnets" {
+  vpc = data.ibm_is_vpc.vpc.id
 }
 
-data "ibm_is_subnet" "subnet_2" {
-  provider = ibm.primary
-  name = var.name_subnet_2
+locals {
+  subnet_map = {
+    for subnet in data.ibm_is_subnets.all_subnets.subnets : subnet.name => subnet.id
+  }
 }
 
 resource "ibm_is_instance" "vsi" {
@@ -45,7 +45,7 @@ resource "ibm_is_instance" "vsi" {
     image = each.value.image
 
     primary_network_interface {
-      subnet = data.ibm_is_subnet.each.subnet.id
+      subnet = local.subnet_map[each.value.subnet]
     }
 
     vpc       = data.ibm_is_vpc.vpc.id
