@@ -45,7 +45,7 @@ resource "ibm_is_instance" "vsi" {
     image = each.value.image
 
     primary_network_interface {
-      subnet = data.ibm_is_subnet[each.subnet].id
+      subnet = data.ibm_is_subnet.each.subnet.id
     }
 
     vpc       = data.ibm_is_vpc.vpc.id
