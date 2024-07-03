@@ -35,14 +35,6 @@ variable "name_vpc" {
     default = "vpc-demo-dallas"
     description = "vpc name region"
 }
-variable "name_subnet_1" {
-    default = "sn-20240703-01"
-    description = "subnet name region"
-}
-variable "name_subnet_2" {
-    default = "sn-20240703-02"
-    description = "subnet name region"
-}
 variable vms {
     description = "List of vm for control plane"
     type = list(object({
@@ -56,14 +48,14 @@ variable vms {
         {
             name = "vsi-rhel-dal1"
             profile = "bx2d-4x16"
-            subnet = "subnet_1"
+            subnet = "sn-20240703-01"
             image = "r006-066a97dc-ebb3-4e44-8f1e-9ccae5b47e2a"
             zone = 1
         },
         {
             name = "vsi-centos-dal2"
             profile = "bx2d-4x16"
-            subnet = "subnet_2"
+            subnet = "sn-20240703-02"
             image = "r006-066a97dc-ebb3-4e44-8f1e-9ccae5b47e2a"
             zone = 2
         },
