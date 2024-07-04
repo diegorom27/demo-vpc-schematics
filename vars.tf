@@ -43,6 +43,7 @@ variable vms {
         subnet = string
         image = string
         zone = number
+        count = number
     }))
     default = [
         {
@@ -51,6 +52,15 @@ variable vms {
             subnet = "sn-20240703-01"
             image = "r006-066a97dc-ebb3-4e44-8f1e-9ccae5b47e2a"
             zone = 1
-        }
+            count = 2
+        },
+        {
+            name = "vsi-centos-dal2"
+            profile = "bx2d-4x16"
+            subnet = "sn-20240703-02"
+            image = "r006-066a97dc-ebb3-4e44-8f1e-9ccae5b47e2a"
+            zone = 2
+            count = 1
+        },
     ]
 }

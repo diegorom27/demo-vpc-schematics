@@ -39,8 +39,9 @@ locals {
 
 resource "ibm_is_instance" "vsi" {
     for_each = { for vm in var.vms : vm.name => vm }
+    count = each.value.count
     provider = ibm.primary
-    name    = each.value.name
+    name    = "${each.value.name}-${count.index + 1}"
     profile = each.value.profile
     image = each.value.image
 
