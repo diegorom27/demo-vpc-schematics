@@ -20,7 +20,7 @@ variable ibm_region {
 variable resource_group {
     description = "Name of resource group where all infrastructure will be provisioned"
     type        = string
-    default     = "asset-development"
+    default     = "vpc-demo-ag"
 
     validation  {
       error_message = "Unique ID must begin and end with a letter and contain only letters, numbers, and - characters."
