@@ -33,7 +33,7 @@ data "ibm_is_subnets" "all_subnets" {
 
 locals {
   subnet_map = {
-    for subnet in data.ibm_is_subnets.all_subnets.subnets : subnet.name => subnet.id
+    for subnet in data.ibm_is_subnets.all_subnets : subnet.name => subnet.id
   }
 }
 
